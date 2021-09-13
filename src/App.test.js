@@ -8,10 +8,10 @@ beforeEach(() => {
   render(<App />);
   // find an element with a role of button and text of 'Change to blue'
   colorButton = screen.getByRole('button', { name: /Change to blue/i });
-  checkBox = screen.getByRole('checkbox');
+  checkBox = screen.getByRole('checkbox', { name: /Disable button/i });
 });
 
-describe(`App component has button and functions as follows`, () => {
+describe(`App component has button with checkbox and functions as follows`, () => {
   it('has the correct initial color', () => {
     // expect the background color to be red
     expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
@@ -49,5 +49,11 @@ describe(`App component has button and functions as follows`, () => {
     fireEvent.click(checkBox);
 
     expect(checkBox).toBeChecked();
+  });
+
+  it('changes to gray when disabled', () => {
+    fireEvent.click(checkBox);
+
+    expect(colorButton).toHaveStyle({ backgroundColor: 'gray' });
   });
 });

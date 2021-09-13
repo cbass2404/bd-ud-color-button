@@ -13,18 +13,19 @@ function App() {
   return (
     <div className='App'>
       <button
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: disabled ? 'gray' : color }}
         onClick={handleClick}
         disabled={disabled}
       >
         {color === 'red' ? 'Change to blue' : 'Change to red'}
       </button>
       <input
-        id='enable-button-checkbox'
+        id='disable-button-checkbox'
         type='checkbox'
         checked={disabled}
-        onClick={() => setDisabled(!disabled)}
+        onChange={() => setDisabled(!disabled)}
       />
+      <label htmlFor='disable-button-checkbox'>Disable button</label>
     </div>
   );
 }
