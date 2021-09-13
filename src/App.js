@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import './App.css';
 
+export function replaceCamelWithSpaces(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, ' $1');
+}
+
+export const primaryColor = 'MediumVioletRed';
+export const secondaryColor = 'MidnightBlue';
+
 function App() {
-  const [color, setColor] = useState('red');
+  const [color, setColor] = useState(primaryColor);
   const [disabled, setDisabled] = useState(false);
 
   const handleClick = () => {
-    const newColor = color === 'red' ? 'blue' : 'red';
-    setColor(newColor);
+    setColor(color === primaryColor ? secondaryColor : primaryColor);
   };
 
   return (
@@ -17,7 +23,7 @@ function App() {
         onClick={handleClick}
         disabled={disabled}
       >
-        {color === 'red' ? 'Change to blue' : 'Change to red'}
+        {`Change to ${replaceCamelWithSpaces(color)}`}
       </button>
       <input
         id='disable-button-checkbox'
